@@ -44,6 +44,12 @@ public class Controller implements Initializable {
 
     @FXML
     private Button btnClose;
+    
+    @FXML
+    private Button btnClose2;
+    
+    @FXML
+    private Button btnClose3;
 
     @FXML
     private Pane pnlCustomer;
@@ -125,7 +131,9 @@ public class Controller implements Initializable {
             pnlOrders.setStyle("-fx-background-color : #464F67");
             pnlOrders.toFront();
         }
-        if(actionEvent.getSource()==btnClose) {
+        if(actionEvent.getSource()==btnClose 
+        		|| actionEvent.getSource()==btnClose2 
+        		|| actionEvent.getSource()==btnClose3) {
         	Platform.exit();
         }
         if(actionEvent.getSource()==btnLogin) {
