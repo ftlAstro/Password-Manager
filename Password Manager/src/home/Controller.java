@@ -15,6 +15,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -43,18 +44,6 @@ public class Controller implements Initializable {
 
     @FXML
     private Button btnClose;
-    
-    @FXML
-    private Button btnClose2;
-    
-    @FXML
-    private Button btnClose3;
-    
-    @FXML
-    private Button btnAdd;
-    
-    @FXML
-    private Button btnLogin;
 
     @FXML
     private Pane pnlCustomer;
@@ -72,7 +61,19 @@ public class Controller implements Initializable {
     private Pane pnlLogin;
     
     @FXML
+    private Button btnLogin;
+    
+    @FXML
     private PasswordField fieldPassword;
+    
+    @FXML
+    private Button btnAdd;
+    
+    @FXML
+    private PasswordField fieldRegister;
+    
+    @FXML
+    private Button btnRegister;
     
     public int i = 0;
 
@@ -81,27 +82,28 @@ public class Controller implements Initializable {
         pnlLogin.setStyle("-fx-background-color : #02030A");
         pnlLogin.toFront();
         btnLogin.toFront();
-    	/*Node[] nodes = new Node[10];
-        for (int i = 0; i < nodes.length; i++) {
-            try {
-
-                final int j = i;
-                nodes[i] = FXMLLoader.load(getClass().getResource("Item.fxml"));
-
-                //give the items some effect
-
-                nodes[i].setOnMouseEntered(event -> {
-                    nodes[j].setStyle("-fx-background-color : #0A0E3F");
-                });
-                nodes[i].setOnMouseExited(event -> {
-                    nodes[j].setStyle("-fx-background-color : #02030A");
-                });
-                pnItems.getChildren().add(nodes[i]);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }*/
-
+        File f = new File("master.txt");
+        if(f.exists() && !f.isDirectory()) {
+        	btnLogin.setDisable(false);
+        	btnLogin.setVisible(true);
+        	fieldPassword.setDisable(false);
+        	fieldPassword.setVisible(true);
+        	fieldRegister.setDisable(true);
+            fieldRegister.setVisible(false);
+            btnRegister.setDisable(true);
+            btnRegister.setVisible(false);
+        }
+        else {
+        	btnLogin.setDisable(true);
+        	btnLogin.setVisible(false);
+        	fieldPassword.setDisable(true);
+        	fieldPassword.setVisible(false);
+        	fieldRegister.setDisable(false);
+            fieldRegister.setVisible(true);
+            btnRegister.setDisable(false);
+            btnRegister.setVisible(true);
+        }
+        
     }
 
 
@@ -123,9 +125,7 @@ public class Controller implements Initializable {
             pnlOrders.setStyle("-fx-background-color : #464F67");
             pnlOrders.toFront();
         }
-        if(actionEvent.getSource()==btnClose 
-        		|| actionEvent.getSource()==btnClose2 
-        		|| actionEvent.getSource()==btnClose3) {
+        if(actionEvent.getSource()==btnClose) {
         	Platform.exit();
         }
         if(actionEvent.getSource()==btnLogin) {
@@ -134,28 +134,22 @@ public class Controller implements Initializable {
         }
         if(actionEvent.getSource()==btnAdd) {
         	Node[] nodes = new Node[500];
-            //for (int i = 0; i < n odes.length; i++) {
-                try {
+            try {
+            	final int j = i;
+                nodes[i] = FXMLLoader.load(getClass().getResource("Item.fxml"));
 
-                    final int j = i;
-                    nodes[i] = FXMLLoader.load(getClass().getResource("Item.fxml"));
-
-                    //give the items some effect
-
-                    nodes[i].setOnMouseEntered(event -> {
-                        nodes[j].setStyle("-fx-background-color : #0A0E3F");
-                    });
-                    nodes[i].setOnMouseExited(event -> {
-                        nodes[j].setStyle("-fx-background-color : #02030A");
-                    });
-                    pnItems.getChildren().add(nodes[i]);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                System.out.println(i);
-                i++;
-                
-            //}
+                nodes[i].setOnMouseEntered(event -> {
+                	nodes[j].setStyle("-fx-background-color : #0A0E3F");
+                });
+                nodes[i].setOnMouseExited(event -> {
+                	nodes[j].setStyle("-fx-background-color : #02030A");
+                });
+                pnItems.getChildren().add(nodes[i]);
+            } catch (IOException e) {
+            	e.printStackTrace();
+            }
+            System.out.println(i);
+            i++;
         }
     }
 }
