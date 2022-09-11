@@ -22,6 +22,7 @@ public class Controller implements Initializable {
 
     @FXML
     private VBox pnItems = null;
+    
     @FXML
     private Button btnOverview;
 
@@ -42,6 +43,18 @@ public class Controller implements Initializable {
 
     @FXML
     private Button btnClose;
+    
+    @FXML
+    private Button btnClose2;
+    
+    @FXML
+    private Button btnClose3;
+    
+    @FXML
+    private Button btnAdd;
+    
+    @FXML
+    private Button btnLogin;
 
     @FXML
     private Pane pnlCustomer;
@@ -59,13 +72,7 @@ public class Controller implements Initializable {
     private Pane pnlLogin;
     
     @FXML
-    private Button btnLogin;
-    
-    @FXML
     private PasswordField fieldPassword;
-    
-    @FXML
-    private Button btnAdd;
     
     public int i = 0;
 
@@ -116,7 +123,9 @@ public class Controller implements Initializable {
             pnlOrders.setStyle("-fx-background-color : #464F67");
             pnlOrders.toFront();
         }
-        if(actionEvent.getSource()==btnClose) {
+        if(actionEvent.getSource()==btnClose 
+        		|| actionEvent.getSource()==btnClose2 
+        		|| actionEvent.getSource()==btnClose3) {
         	Platform.exit();
         }
         if(actionEvent.getSource()==btnLogin) {
